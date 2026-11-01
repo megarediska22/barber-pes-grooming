@@ -1,0 +1,10 @@
+const dialog=document.querySelector('#booking');
+document.querySelectorAll('.open-booking').forEach(b=>b.addEventListener('click',()=>dialog.showModal()));
+document.querySelector('.close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+const form=document.querySelector('#booking-form');
+form.addEventListener('submit',e=>{e.preventDefault();form.hidden=true;dialog.querySelector('.success').hidden=false});
+document.querySelector('.close-success').addEventListener('click',()=>{dialog.close();setTimeout(()=>{form.reset();form.hidden=false;dialog.querySelector('.success').hidden=true},250)});
+const menu=document.querySelector('.menu-btn'),nav=document.querySelector('.nav');
+menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
